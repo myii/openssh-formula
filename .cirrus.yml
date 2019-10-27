@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+
+task:
+  name: freebsd-120-2019-2-py2
+  freebsd_instance:
+    # matrix:
+    #   image_family: freebsd-13-0-snap
+    #   image_family: freebsd-12-0
+    # image_family: freebsd-12-0
+    image: freebsd-12-0-release-amd64
+  setup_script:
+    # - which ruby
+    # - which python
+    - pkg install -y py27-salt
+    # - pkg install -y curl
+    # - curl https://sh.rustup.rs -sSf --output rustup.sh
+    # - sh rustup.sh -y
+    # - . $HOME/.cargo/env
+    # - rustup default stable
+  # test_script:
+  #   - . $HOME/.cargo/env
+  #   - sh ci/run.sh x86_64-unknown-freebsd
+  # bundle_install_script: bundle install
+  verify_script:
+    - export KITCHEN_LOCAL_YAML=kitchen.vagrant.yml
+    - bin/kitchen verify freebsd-120-2019-2-py2
+
+
+  # env:
+  #   PATH: /usr/local/bin:$PATH
+  #   MD5SUM: /sbin/md5sum
+  #   CMOCKA_INSTALL: $PWD/builds/cmocka-install
+  #   CHECKPATCH_INSTALL: $PWD/builds/checkpatch-install
+  # install_script:
+  # build_script:
+  # test_script:
+  # coverage_script:
+
+
+# env:
+#   CIRRUS_CLONE_DEPTH: 1
+# freebsd_12_task:
+#   freebsd_instance:
+#     image: freebsd-12-0-release-amd64
+#     cpu: 8
+#     memory: 8G
+#   install_script: pkg install -y
+#     bash bison curl cyrus-sasl git glib gmake gnutls gsed
+#     nettle perl5 pixman pkgconf png usbredir
+#   script:
+#     - mkdir build
+#     - cd build
+#     - ../configure || { cat config.log; exit 1; }
+#     - gmake -j8
+#     - gmake -j8 V=1 check
+# macos_task:
+#   osx_instance:
+#     image: mojave-base
+#   install_script:
+#     - brew install pkg-config python gnu-sed glib pixman make sdl2
+#   script:
+#     - ./configure --python=/usr/local/bin/python3 || { cat config.log; exit 1; }
+#     - gmake -j$(sysctl -n hw.ncpu)
+#     - gmake check -j$(sysctl -n hw.ncpu)
+
+# docker_builder:
+#   name: Test ${INSTANCE}
+#   env:
+#     matrix:
+#       - INSTANCE: debian-debian-10-master-py3
+#       # - INSTANCE: debian-ubuntu-1804-master-py3
+#       # - INSTANCE: redhat-centos-8-master-py3
+#       # - INSTANCE: redhat-fedora-31-master-py3
+#       # - INSTANCE: suse-opensuse-leap-151-master-py3
+#       # - INSTANCE: redhat-amazonlinux-2-master-py3
+#       # - INSTANCE: debian-debian-10-2019-2-py3
+#       # - INSTANCE: debian-debian-9-2019-2-py3
+#       - INSTANCE: debian-ubuntu-1804-2019-2-py3
+#       - INSTANCE: redhat-centos-8-2019-2-py3
+#       # - INSTANCE: redhat-fedora-31-2019-2-py3
+#       # - INSTANCE: suse-opensuse-leap-151-2019-2-py3
+#       # - INSTANCE: redhat-amazonlinux-2-2019-2-py3
+#       # - INSTANCE: redhat-centos-7-2019-2-py2
+#       - INSTANCE: redhat-fedora-30-2018-3-py3
+#       # - INSTANCE: debian-debian-9-2018-3-py2
+#       # - INSTANCE: debian-ubuntu-1604-2018-3-py2
+#       # - INSTANCE: redhat-centos-7-2018-3-py2
+#       - INSTANCE: suse-opensuse-leap-151-2018-3-py2
+#       # - INSTANCE: redhat-amazonlinux-2-2018-3-py2
+#       # - INSTANCE: debian-debian-8-2017-7-py2
+#       # - INSTANCE: debian-ubuntu-1604-2017-7-py2
+#       - INSTANCE: redhat-centos-6-2017-7-py2
+#       # - INSTANCE: redhat-fedora-30-2017-7-py2
+#       # - INSTANCE: suse-opensuse-leap-151-2017-7-py2
+#       # - INSTANCE: redhat-amazonlinux-2-2017-7-py2
+#   bundle_install_script: bundle install
+#   verify_script:
+#     - bin/kitchen verify ${INSTANCE}
