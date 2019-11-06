@@ -13,7 +13,19 @@ task:
   setup_script:
     # - which ruby
     # - which python
-    - pkg install -y py27-salt
+    # - pkg install -y py27-salt
+
+    # - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+    # - sh bootstrap-salt.sh
+    - pwd
+    - ls -al
+    - pkg install -y ruby
+    - cd /usr/ports/devel/ruby-gems
+    - make install
+    - cd /tmp/cirrus-ci-build
+    - gem install bundler
+    - bundle install
+
     # - pkg install -y curl
     # - curl https://sh.rustup.rs -sSf --output rustup.sh
     # - sh rustup.sh -y
@@ -28,15 +40,15 @@ task:
     - bin/kitchen verify freebsd-120-2019-2-py2
 
 
-  # env:
-  #   PATH: /usr/local/bin:$PATH
-  #   MD5SUM: /sbin/md5sum
-  #   CMOCKA_INSTALL: $PWD/builds/cmocka-install
-  #   CHECKPATCH_INSTALL: $PWD/builds/checkpatch-install
-  # install_script:
-  # build_script:
-  # test_script:
-  # coverage_script:
+#   env:
+#     PATH: /usr/local/bin:$PATH
+#     MD5SUM: /sbin/md5sum
+#     CMOCKA_INSTALL: $PWD/builds/cmocka-install
+#     CHECKPATCH_INSTALL: $PWD/builds/checkpatch-install
+#   install_script:
+#   build_script:
+#   test_script:
+#   coverage_script:
 
 
 # env:
