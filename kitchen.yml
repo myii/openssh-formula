@@ -156,8 +156,8 @@ suites:
         base:
           '*':
             - openssh._mapdata
-            # - openssh.config
-            # - openssh.known_hosts
+            - openssh.config
+            - openssh.known_hosts
       pillars:
         top.sls:
           base:
